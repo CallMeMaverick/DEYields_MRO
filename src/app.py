@@ -2,11 +2,12 @@ import os
 import streamlit as st
 import pandas as pd
 from translations import translations
+from classes import BondWizard, RegressionAnalysis
 
 
 st.set_page_config(page_title="German Bonds & ECB Policy", layout="wide")
 
-language = st.sidebar.selectbox("🌐 Select Language / Виберіть мову", ["en", "uk"])
+language = st.sidebar.selectbox("🌐 Select Language / Виберіть мову", ["🇺🇸", "🇺🇦"])
 t = translations[language]
 
 st.title(t["title"])
@@ -29,6 +30,10 @@ if os.path.exists(DATA_PATH):
     else:
         st.write(t["dataset_preview"])
         st.dataframe(df.head())
+
+    regression = RegressionAnalysis()
+    bond_wizard = BondWizard(df, t, language, regression)
+    bond_wizard.plot_all()
 
 else:
     st.warning("No dataset found")

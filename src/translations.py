@@ -1,5 +1,5 @@
 translations = {
-    "en": {
+    "🇺🇸": {
         "title": "Analyzing 10-Year German Bond Yields & ECB Policy",
         "description": "This app explores the relationship between the ECB’s Main Refinancing Operations Rate (MRO) and German 10-Year Government Bond Yields.",
         "toggle_dataset": "🔁 Toggle dataset",
@@ -11,7 +11,7 @@ translations = {
         "scatter_plot": "📊 Relationship Between MRO Rate & Bond Yields",
         "correlation": "🔥 Correlation Matrix",
     },
-    "uk": {
+    "🇺🇦": {
         "title": "Аналіз дохідності 10-річних облігацій Німеччини та політики ЄЦБ",
         "description": "Цей додаток досліджує взаємозв'язок між основною ставкою рефінансування ЄЦБ (MRO) і дохідністю 10-річних державних облігацій Німеччини.",
         "toggle_dataset": "🔁 Перемкнути набір даних",
