@@ -105,14 +105,6 @@ class BondWizard:
         st.write(f"### Regression Summary")
         st.table(summary_df.style.format(precision=4))
 
-        csv = summary_df.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            label="📥 Download Regression Summary as CSV",
-            data=csv,
-            file_name="regression_summary.csv",
-            mime="text/csv"
-        )
-
     def plot_all(self):
         """Organize plots into tabs for better UI"""
         tab1, tab2, tab3, tab4 = st.tabs(

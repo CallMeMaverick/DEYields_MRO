@@ -7,7 +7,7 @@ from classes import BondWizard, RegressionAnalysis
 
 st.set_page_config(page_title="German Bonds & ECB Policy", layout="wide")
 
-language = st.sidebar.selectbox("🌐 Select Language / Виберіть мову", ["🇺🇸", "🇺🇦"])
+language = st.sidebar.selectbox("🌐 **Select Language / Виберіть мову**", ["🇺🇸", "🇺🇦"])
 t = translations[language]
 
 st.title(t["title"])
@@ -34,6 +34,16 @@ if os.path.exists(DATA_PATH):
     regression = RegressionAnalysis()
     bond_wizard = BondWizard(df, t, language, regression)
     bond_wizard.plot_all()
+
+    st.sidebar.write("📂 **Download Data**")
+    csv_data = bond_wizard.analysis_strategy.analyse(df).to_csv(index=False).encode('utf-8')
+    file_name = "regression_summary.csv"
+    st.sidebar.download_button(
+        label="📥 Download Regression Summary as CSV",
+        data=csv_data,
+        file_name=file_name,
+        mime="text/csv"
+    )
 
 else:
     st.warning("No dataset found")
