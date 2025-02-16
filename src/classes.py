@@ -58,16 +58,28 @@ class BondWizard:
         st.plotly_chart(fig, use_container_width=True)
 
     def plot_correlation_matrix(self):
-        """Plot correlation matrix heatmap with better formatting"""
+        """Plot correlation matrix"""
         st.write(f"## {self.t['correlation']}")
 
         corr_df = self.df.drop(columns=["Date"], errors="ignore")
+
+        rename_dict = {
+            "German 10-Year Government Bond Yields (%)": "GER 10Y",
+            "MRO Rate (%)": "MRO",
+            "US 10-Year Government Benchmark Bond Yield (%)": "US 10Y"
+        }
+        corr_df = corr_df.rename(columns=rename_dict)
+
         corr_matrix = corr_df.corr()
 
-        fig, ax = plt.subplots(figsize=(6, 4))
+        fig, ax = plt.subplots(figsize=(6, 5))
 
-        sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", ax=ax, fmt=".2f", linewidths=0.5)
-        ax.set_title(self.t["correlation"], fontsize=14)
+        sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", ax=ax, fmt=".2f",
+                    linewidths=0.3, annot_kws={"size": 8}, cbar_kws={'shrink': 0.5})
+
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=0, ha='center', fontsize=8)
+        ax.set_yticklabels(ax.get_yticklabels(), rotation=0, va='center', fontsize=8)
+        ax.set_title(self.t["correlation"], fontsize=10, fontweight="bold")
 
         st.pyplot(fig)
 
