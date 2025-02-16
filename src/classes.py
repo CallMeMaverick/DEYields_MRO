@@ -72,7 +72,7 @@ class BondWizard:
         st.pyplot(fig)
 
     def regression_summary(self):
-        """"""
+        """Use the injected strategy to analyze data"""
         summary_df = self.analysis_strategy.analyse(self.df)
         st.write(f"### Regression Summary")
         st.table(summary_df.style.format(precision=4))
@@ -86,7 +86,6 @@ class BondWizard:
         with col2:
             self.plot_scatter_mro_vs_bonds()
 
-        # Show correlation matrix below
         self.regression_summary()
         self.plot_correlation_matrix()
 
