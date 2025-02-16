@@ -108,13 +108,14 @@ class BondWizard:
     def plot_all(self):
         """Organize plots into tabs for better UI"""
         tab1, tab2, tab3, tab4 = st.tabs(
-            ["📈 Time Series", "📊 Scatter Plot", "📉 Residuals", "🔥 Correlation"]
+            [self.t['time_series_tab'], self.t['scatter_tab'], self.t['residuals_plot'], self.t['correlation']]
         )
 
         with tab1:
             self.plot_time_series()
         with tab2:
             self.plot_scatter_mro_vs_bonds()
+            self.regression_summary()
         with tab3:
             self.plot_residuals()
         with tab4:
