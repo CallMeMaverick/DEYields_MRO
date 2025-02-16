@@ -57,6 +57,22 @@ class BondWizard:
                          trendline="ols", title=self.t["scatter_plot"])
         st.plotly_chart(fig, use_container_width=True)
 
+    def plot_residuals(self):
+        """Plot regression residuals to assess model fit."""
+        feature = self.df[["MRO Rate (%)"]]
+        target = self.df[["German 10-Year Government Bond Yields (%)"]]
+
+        feature_with_intercept = sm.add_constant(feature)
+        model = sm.OLS(target, feature_with_intercept).fit()
+
+        residuals = model.resid
+        st.write(f"## {self.t['residuals_plot']}")
+        fig = px.scatter(x=model.fittedvalues, y=residuals,
+                         labels={"x": "Fitted Values", "y": "Residuals"},
+                         title="Residuals vs. Fitted Values")
+        fig.add_hline(y=0, line_dash="dash")
+        st.plotly_chart(fig, use_container_width=True)
+
     def plot_correlation_matrix(self):
         """Plot correlation matrix"""
         st.write(f"## {self.t['correlation']}")
@@ -90,14 +106,18 @@ class BondWizard:
         st.table(summary_df.style.format(precision=4))
 
     def plot_all(self):
-        col1, col2 = st.columns(2)
+        """Organize plots into tabs for better UI"""
+        tab1, tab2, tab3, tab4 = st.tabs(
+            ["📈 Time Series", "📊 Scatter Plot", "📉 Residuals", "🔥 Correlation"]
+        )
 
-        with col1:
+        with tab1:
             self.plot_time_series()
-
-        with col2:
+        with tab2:
             self.plot_scatter_mro_vs_bonds()
+        with tab3:
+            self.plot_residuals()
+        with tab4:
+            self.plot_correlation_matrix()
 
-        self.regression_summary()
-        self.plot_correlation_matrix()
 
