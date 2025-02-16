@@ -5,7 +5,25 @@ from translations import translations
 from classes import BondWizard, RegressionAnalysis
 
 
-st.set_page_config(page_title="German Bonds & ECB Policy", layout="wide")
+st.set_page_config(
+    page_title="German Bonds & ECB Policy",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+st.markdown(
+    """
+    <style>
+    /* Standardize sidebar font */
+    [data-testid="stSidebar"] * {
+        font-family: "Arial", sans-serif;
+        font-size: 16px !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 language = st.sidebar.selectbox("🌐 **Select Language / Виберіть мову**", ["🇺🇸", "🇺🇦"])
 t = translations[language]
