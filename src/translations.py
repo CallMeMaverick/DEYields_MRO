@@ -10,6 +10,7 @@ translations = {
         "time_series": "📈 Bond Yields & MRO Over Time",
         "scatter_plot": "📊 Relationship Between MRO Rate & Bond Yields",
         "correlation": "🔥 Correlation Matrix",
+        "residuals_plot": "📉 Residuals Plot (Regression Diagnostics)"
     },
     "🇺🇦": {
         "title": "Аналіз дохідності 10-річних облігацій Німеччини та політики ЄЦБ",
@@ -22,5 +23,6 @@ translations = {
         "time_series": "📈 Дохідність облігацій та MRO з часом",
         "scatter_plot": "📊 Взаємозв’язок між ставкою MRO та дохідністю облігацій",
         "correlation": "🔥 Кореляційна матриця",
+        "residuals_plot": "📉 Графік залишків (Діагностика регресії)"
     }
 }
